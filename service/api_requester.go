@@ -35,7 +35,7 @@ func (r *ApiRequester) GetCurrencyCode(path string, code string) (string, error)
 	return currencyCode, nil
 }
 
-func (r *ApiRequester) GetData(path string) (string, error) {
+func (r *ApiRequester) GetExchangeRate(path string) (string, error) {
 	resp, err := http.Get(path)
 	if err != nil {
 		log.Fatalln(err)
@@ -49,10 +49,10 @@ func (r *ApiRequester) GetData(path string) (string, error) {
 	}
 
 	response := Response{}
-	responceExchangeRate, err := response.UnmarshalResponse(string(body))
+	responseExchangeRate, err := response.UnmarshalResponse(string(body))
 	if err != nil {
 		log.Fatalln(err)
 		return "", err
 	}
-	return responceExchangeRate, nil
+	return responseExchangeRate, nil
 }
