@@ -3,6 +3,7 @@ package service
 import (
 	"encoding/xml"
 	"errors"
+	"strings"
 )
 
 type Currency struct {
@@ -32,7 +33,7 @@ func (r *Currency) UnmarshalCurrency(data string, code string) (string, error) {
 
 	for _, curNode := range currency.Currency {
 		if curNode.EngName == code {
-			return curNode.ParentCode, nil
+			return strings.TrimSpace(curNode.ParentCode), nil
 		}
 
 	}
@@ -47,7 +48,7 @@ func (r *Response) UnmarshalResponse(data string) (string, error) {
 	}
 
 	for _, respNode := range response.Response {
-		return respNode.Value, nil
+		return strings.TrimSpace(respNode.Value), nil
 	}
 
 	return "", errors.New("error in UnmarshalResponse")

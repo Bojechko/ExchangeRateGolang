@@ -24,7 +24,7 @@ func main() {
 	if err != nil {
 		log.Fatalln(err)
 	}
-	
+
 	answer := *code + ":" + exchangeRate
 	println(answer)
 }
